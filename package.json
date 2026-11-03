@@ -1,0 +1,41 @@
+{
+  "name": "learn-cloudflare",
+  "version": "1.0.0",
+  "description": "Starter project for the Learn Cloudflare guide: a TypeScript Worker with KV, D1 and R2 bindings, tested inside workerd",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "types": "wrangler types",
+    "db:migrate:local": "wrangler d1 migrations apply DB --local",
+    "lint": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.server.json --noEmit",
+    "test": "vitest run",
+    "build": "wrangler deploy --dry-run --outdir dist/worker && tsc -p tsconfig.server.json",
+    "start": "node dist/server.js"
+  },
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "wrangler",
+    "d1",
+    "kv",
+    "r2",
+    "typescript"
+  ],
+  "author": "Manthan Ankolekar",
+  "license": "MIT",
+  "dependencies": {
+    "miniflare": "^4.20260730.0"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-plugin": "^1.5.0",
+    "@types/node": "^24.19.2",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0",
+    "wrangler": "^4.156.2"
+  }
+}

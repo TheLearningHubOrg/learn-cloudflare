@@ -1,0 +1,32 @@
+// Wrangler configuration for the starter Worker.
+// Docs: https://developers.cloudflare.com/workers/wrangler/configuration/
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "learn-cloudflare",
+  "main": "src/index.ts",
+  // Pins runtime behaviour. Raise it deliberately and read the changelog of flags it turns on.
+  "compatibility_date": "2026-07-01",
+  "observability": { "enabled": true },
+  "vars": {
+    "APP_NAME": "learn-cloudflare",
+    "CACHE_TTL_SECONDS": "3600"
+  },
+  // Replace the ids with the output of `wrangler kv namespace create LINKS_CACHE`
+  // and `wrangler d1 create learn-cloudflare-links` before the first deploy.
+  "kv_namespaces": [
+    { "binding": "LINKS_CACHE", "id": "00000000000000000000000000000000" }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "learn-cloudflare-links",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    { "binding": "FILES", "bucket_name": "learn-cloudflare-files" }
+  ],
+  // Daily clean-up of expired links (03:00 UTC). See src/index.ts scheduled().
+  "triggers": { "crons": ["0 3 * * *"] }
+}

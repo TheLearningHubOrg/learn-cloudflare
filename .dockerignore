@@ -1,0 +1,12 @@
+.git
+.github
+**/node_modules
+**/dist
+**/coverage
+.wrangler
+.dev.vars
+.env
+*.md
+!README.md
+Dockerfile
+.dockerignore

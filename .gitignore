@@ -1,0 +1,27 @@
+# Node / TypeScript
+node_modules/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+npm-debug.log*
+
+# Wrangler / Miniflare local state and secrets
+.wrangler/
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+
+# Editors and OS
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+*.swp
+.DS_Store
+Thumbs.db
+
+# Env files (never commit secrets)
+.env
+.env.*
+!.env.example
